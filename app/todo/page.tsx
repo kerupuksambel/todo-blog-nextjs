@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -95,7 +96,12 @@ export default function TodoPage() {
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
-        <h1 className="text-3xl font-bold mb-6">Todo List</h1>
+        <div className="flex items-center justify-between mb-6 cursor-pointer">
+          <h1 className="text-3xl font-bold">Todo List</h1>
+          <Link href="/">
+            <Button>Go to Blog</Button>
+          </Link>
+        </div>
 
         <div className="flex gap-2 mb-6">
           <Button

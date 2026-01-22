@@ -27,7 +27,10 @@ export default function Home() {
       try {
         setLoading(true);
         const response = await axios.get<Post[]>(
-          "https://jsonplaceholder.typicode.com/posts"
+          "https://jsonplaceholder.typicode.com/posts",
+          {
+            timeout: 5 * 1000
+          }
         );
         setPosts(response.data);
         setError(null);
@@ -60,7 +63,12 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-6">
-        <h1 className="text-3xl font-bold mb-6">Blog</h1>
+        <div className="flex items-center justify-between mb-6 cursor-pointer">
+          <h1 className="text-3xl font-bold">Blog</h1>
+          <Link href="/todo">
+            <Button>Go to Todo</Button>
+          </Link>
+        </div>
 
         {loading ? (
           <div className="flex items-center justify-center py-12">

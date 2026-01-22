@@ -37,9 +37,13 @@ export default function PostDetailPage() {
         setLoading(true);
         
         const [postResponse, commentsResponse] = await Promise.all([
-          axios.get<Post[]>("https://jsonplaceholder.typicode.com/posts"),
+          axios.get<Post[]>("https://jsonplaceholder.typicode.com/posts", {
+            timeout: 5 * 1000
+          }),
           axios.get<Comment[]>(
-            `https://jsonplaceholder.typicode.com/comments?postId=${postId}`
+            `https://jsonplaceholder.typicode.com/comments?postId=${postId}`, {
+                timeout: 5 * 1000
+              }
           ),
         ]);
 
