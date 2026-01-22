@@ -1,15 +1,15 @@
 This is a Next.js project for containing blog and todo list.
 
 ## Features
-[v] Todo List
-    [v] Add new task
-    [v] Mark task as completed
-    [v] Delete Tasks
-    [v] Persist tasks items using localStorage (Optional / Bonus)
-    [v] Filter by all / completed / pending (Optional / Bonus)
-[v] Blog
-    [v] Fetch post from `https://jsonplaceholder.typicode.com/posts`
-    [v] Display post detail, and show comment in `https://jsonplaceholder.typicode.com/comments?postId=[ID]`
+- [x] Todo List
+    - [x] Add new task
+    - [x] Mark task as completed
+    - [x] Delete Tasks
+    - [x] Persist tasks items using localStorage (Optional / Bonus)
+    - [x] Filter by all / completed / pending (Optional / Bonus)
+- [x] Blog
+    - [x] Fetch post from `https://jsonplaceholder.typicode.com/posts`
+    - [x] Display post detail, and show comment in `https://jsonplaceholder.typicode.com/comments?postId=[ID]`
 
 ## Technical Specifications
 - Node v22
