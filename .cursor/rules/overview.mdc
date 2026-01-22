@@ -1,0 +1,226 @@
+---
+alwaysApply: true
+---
+
+# Next.js Todo Project - Cursor Rules
+
+## Tech Stack
+- Next.js 16.1 (App Router)
+- React 19.2
+- TypeScript 5
+- TailwindCSS 4
+- Shadcn UI 3.7 (New York style)
+- Redux Toolkit 2.11 with react-redux 9.2
+- Lucide React (icons)
+
+## Code Style & Conventions
+
+### General Principles
+- Keep code simple and maintainable
+- Reuse existing components from `@/components/ui/` whenever possible
+- Follow TypeScript strict typing - avoid `any` types
+- Use functional components with hooks exclusively
+- Prefer composition over complexity
+
+### File Structure
+- Pages: `app/**/*.tsx` (App Router structure)
+- Components: `components/ui/**/*.tsx` (Shadcn UI components)
+- Utilities: `lib/**/*.ts`
+- Types: Define interfaces/types inline or in the same file where used
+
+### Naming Conventions
+- Files: kebab-case for all files (e.g., `todo-list.tsx`)
+- Components: PascalCase (e.g., `TodoList`)
+- Functions/variables: camelCase (e.g., `handleSubmit`)
+- Types/Interfaces: PascalCase (e.g., `Task`, `FilterType`)
+- Constants: UPPER_SNAKE_CASE (e.g., `MAX_TASKS`)
+
+### Next.js App Router
+- Use `"use client"` directive only when necessary (client-side interactivity)
+- Server components by default for static content
+- Keep metadata in layout.tsx files
+- Use proper loading.tsx and error.tsx patterns
+
+### TypeScript
+- Always define prop types with interfaces
+- Use type inference where obvious
+- Avoid type assertions unless absolutely necessary
+- Export types used across multiple files
+
+Example:
+```typescript
+interface Task {
+  id: string;
+  title: string;
+  completed: boolean;
+}
+
+interface TodoPageProps {
+  initialTasks?: Task[];
+}
+```
+
+### React Patterns
+- Use hooks for state and side effects
+- Keep components small and focused
+- Extract reusable logic into custom hooks
+- Avoid prop drilling - use Redux for global state
+
+### Shadcn UI Components
+- Always import from `@/components/ui/*`
+- Use existing components: Button, Input, Dialog, Table, Checkbox, etc.
+- Don't create custom UI components if Shadcn equivalent exists
+- Follow Shadcn variant patterns (e.g., `variant="outline"`)
+
+Example:
+```typescript
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+```
+
+### Styling with Tailwind
+- Use Tailwind utility classes exclusively
+- Follow mobile-first responsive design
+- Use consistent spacing scale (p-4, p-6, p-8, etc.)
+- Leverage Tailwind's color palette (gray-50, gray-500, etc.)
+- Use conditional classes with template literals for state-based styling
+
+Example:
+```typescript
+className={task.completed ? "line-through text-gray-500" : ""}
+```
+
+### State Management
+- Local state: React useState for component-specific state
+- Global state: Redux Toolkit with react-redux
+- Keep Redux slices organized in a `store/` directory
+- Use Redux for cross-page state, auth, and complex data
+
+### Forms & Inputs
+- Use controlled components with useState
+- Handle Enter key submissions where appropriate
+- Clear form inputs after successful submission
+- Show validation feedback inline
+
+### Event Handlers
+- Prefix with `handle` or use action verbs (e.g., `handleSubmit`, `addTask`)
+- Keep handlers concise - extract complex logic
+- Use arrow functions for inline handlers
+
+### Icons
+- Use Lucide React for all icons
+- Import only needed icons: `import { Trash2, Plus } from "lucide-react"`
+- Set consistent icon sizes with className (e.g., `h-4 w-4`)
+
+### Error Handling
+- Validate user input before processing
+- Show user-friendly error messages
+- Handle edge cases (empty states, loading states)
+
+### Performance
+- Avoid unnecessary re-renders
+- Use proper key props in lists (unique IDs, not indexes)
+- Memoize expensive computations if needed
+- Keep bundle size small - import only what you use
+
+### Accessibility
+- Use semantic HTML elements
+- Include proper ARIA labels where needed
+- Ensure keyboard navigation works
+- Maintain good color contrast ratios
+
+## Example Component Pattern
+
+```typescript
+"use client";
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
+interface Item {
+  id: string;
+  name: string;
+}
+
+export default function ExamplePage() {
+  const [items, setItems] = useState<Item[]>([]);
+  const [inputValue, setInputValue] = useState("");
+
+  const handleAddItem = () => {
+    if (inputValue.trim() === "") return;
+    
+    const newItem: Item = {
+      id: Date.now().toString(),
+      name: inputValue,
+    };
+    
+    setItems([...items, newItem]);
+    setInputValue("");
+  };
+
+  return (
+    <div className="min-h-screen p-8">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="text-3xl font-bold mb-6">Example</h1>
+        
+        <div className="space-y-4">
+          <Input
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="Enter item name"
+          />
+          <Button onClick={handleAddItem}>Add Item</Button>
+        </div>
+
+        <div className="mt-6">
+          {items.map((item) => (
+            <div key={item.id}>{item.name}</div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+## Common Patterns to Follow
+
+### Path Aliases
+Always use the configured aliases:
+- `@/components` for components
+- `@/lib` for utilities
+- `@/hooks` for custom hooks
+
+### Conditional Rendering
+```typescript
+{items.length === 0 ? (
+  <EmptyState />
+) : (
+  <ItemList items={items} />
+)}
+```
+
+### Array Transformations
+```typescript
+// Filter
+const activeTasks = tasks.filter(task => !task.completed);
+
+// Map
+const taskIds = tasks.map(task => task.id);
+
+// Update item in array
+setTasks(tasks.map(task => 
+  task.id === id ? { ...task, completed: true } : task
+));
+```
+
+## What to Avoid
+- Don't use class components
+- Don't use default exports for utilities
+- Don't create custom styled components when Shadcn exists
+- Don't use inline styles - use Tailwind classes
+- Don't use `var` - use `const` or `let`
+- Don't overcomplicate - keep it simple
+- Don't create unnecessary abstractions
+- Don't ignore TypeScript errors - fix them

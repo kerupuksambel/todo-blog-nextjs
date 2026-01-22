@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a Next.js project for containing blog and todo list.
 
-## Getting Started
+## Features
+[] Todo List
+    [v] Add new task
+    [v] Mark task as completed
+    [v] Delete Tasks
+    [] Persist tasks items using localStorage (Optional / Bonus)
+    [v] Filter by all / completed / pending (Optional / Bonus)
+[] Blog
+    [] Fetch post from `https://jsonplaceholder.typicode.com/posts`
+    [] Search post
+    [] Display post detail, and show comment in `https://jsonplaceholder.typicode.com/comments?postId=[ID]`
 
-First, run the development server:
+## Technical Specifications
+- Node v22
+- npm v10.9
+- NextJS v16.1
+- Tailwind v4.0
+- shadcn v3.7 
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## How to Run
+1. Clone this project from GitHub
+2. Using terminal (either from Linux/Mac terminal or using terminal from VSCode), go to the project directory
+3. Run `npm install` to install the dependencies
+4. Run `npm run dev` to run the development server. The server would ran in port 3000 (`localhost:3000`) and should be accessible in your browser. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## LLM Usage Disclaimer
+Some of the codes on this project is created with the help of Cursor as my coding assistant, using model Claude Sonnet 4.5. My flow of works for this project are :
+1. Do a research about the architecture and the best practice of the industry
+2. Determining the technical and detailed specification, and arranging the specs onto the prompts
+3. Reviewing the result. The consideration I use to judge if the code are up to standard are :
+    - Specification, if the resulted code are behave like I asked, with considering edge cases.
+    - Code standard, if the resulted code are following the standardization (e.g. naming convention, tab/space convention, etc)
+    - Style, if the resulted code are following the design rule.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+I am ready to release my prompt that I used whenever asked, and I am also ready to prove my blind skill without AI-powered coding assistant.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+My reasoning on using LLM for the completion of this work is that I hereby believe that AI (LLM in this context) is really helpful to deliver faster, but since doing it without any thoughtful manner could be damaging to our codebase, ranging from non-standardized code for already large codebase, to introducing security vulnerability and instability if the engineer doesn't know the fundamentals of the tech stacks that I use. I believe that the engineer job, especially in the AI era, is to provide a tight guardrail for the LLM-generated code to keep them up to standard, while still delivering fast and stable code.
