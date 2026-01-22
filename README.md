@@ -17,6 +17,7 @@ This is a Next.js project for containing blog and todo list.
 - NextJS v16.1
 - Tailwind v4.0
 - shadcn v3.7 
+- Jest v30.2
 
 ## How to Run
 1. Clone this project from GitHub
