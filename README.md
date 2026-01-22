@@ -1,16 +1,16 @@
 This is a Next.js project for containing blog and todo list.
 
 ## Features
-[] Todo List
+[v] Todo List
     [v] Add new task
     [v] Mark task as completed
     [v] Delete Tasks
-    [] Persist tasks items using localStorage (Optional / Bonus)
+    [v] Persist tasks items using localStorage (Optional / Bonus)
     [v] Filter by all / completed / pending (Optional / Bonus)
 [] Blog
-    [] Fetch post from `https://jsonplaceholder.typicode.com/posts`
+    [v] Fetch post from `https://jsonplaceholder.typicode.com/posts`
     [] Search post
-    [] Display post detail, and show comment in `https://jsonplaceholder.typicode.com/comments?postId=[ID]`
+    [v] Display post detail, and show comment in `https://jsonplaceholder.typicode.com/comments?postId=[ID]`
 
 ## Technical Specifications
 - Node v22
@@ -24,9 +24,11 @@ This is a Next.js project for containing blog and todo list.
 2. Using terminal (either from Linux/Mac terminal or using terminal from VSCode), go to the project directory
 3. Run `npm install` to install the dependencies
 4. Run `npm run dev` to run the development server. The server would ran in port 3000 (`localhost:3000`) and should be accessible in your browser. 
+5. To access the posts module (blog), it would be available in index (`/`)
+6. To access the posts detail, click one of the available posts, it would redirect you to `/post/[ID]`.
+7. To access the todo module, visit `/todo`.
 
 ## LLM Usage Disclaimer
-
 Some of the code in this project was created with the assistance of Cursor as my coding assistant, using the Claude Sonnet 4.5 model. My workflow for this project is as follows:
 
 1. Conduct research on the system architecture and industry best practices.
