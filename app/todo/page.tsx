@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -31,13 +31,36 @@ interface Task {
 
 type FilterType = "all" | "completed" | "pending";
 
+const STORAGE_KEY = "todo-tasks";
+
 export default function TodoPage() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [filter, setFilter] = useState<FilterType>("all");
 
-  const addTask = () => {
+  // Load tasks from localStorage on mount
+  useEffect(() => {
+    try {
+      const storedTasks = localStorage.getItem(STORAGE_KEY);
+      if (storedTasks) {
+        setTasks(JSON.parse(storedTasks));
+      }
+    } catch (error) {
+      console.error("Failed to load tasks from localStorage:", error);
+    }
+  }, []);
+
+  // Save tasks to localStorage whenever they change
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+    } catch (error) {
+      console.error("Failed to save tasks to localStorage:", error);
+    }
+  }, [tasks]);
+
+  const handleAddTask = () => {
     if (newTaskTitle.trim() === "") return;
     
     const newTask: Task = {
@@ -51,7 +74,7 @@ export default function TodoPage() {
     setIsDialogOpen(false);
   };
 
-  const toggleTask = (id: string) => {
+  const handleToggleTask = (id: string) => {
     setTasks(
       tasks.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
@@ -59,7 +82,7 @@ export default function TodoPage() {
     );
   };
 
-  const deleteTask = (id: string) => {
+  const handleDeleteTask = (id: string) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
@@ -117,7 +140,7 @@ export default function TodoPage() {
                     <TableCell>
                       <Checkbox
                         checked={task.completed}
-                        onCheckedChange={() => toggleTask(task.id)}
+                        onCheckedChange={() => handleToggleTask(task.id)}
                       />
                     </TableCell>
                     <TableCell
@@ -133,7 +156,7 @@ export default function TodoPage() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        onClick={() => deleteTask(task.id)}
+                        onClick={() => handleDeleteTask(task.id)}
                       >
                         <Trash2 className="h-4 w-4 text-red-500" />
                       </Button>
@@ -164,7 +187,7 @@ export default function TodoPage() {
                   onChange={(e) => setNewTaskTitle(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") {
-                      addTask();
+                      handleAddTask();
                     }
                   }}
                 />
@@ -179,7 +202,7 @@ export default function TodoPage() {
                 >
                   Cancel
                 </Button>
-                <Button onClick={addTask}>Add Task</Button>
+                <Button onClick={handleAddTask}>Add Task</Button>
               </DialogFooter>
             </DialogContent>
           </Dialog>

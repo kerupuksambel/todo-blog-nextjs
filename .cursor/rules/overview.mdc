@@ -12,6 +12,7 @@ alwaysApply: true
 - Shadcn UI 3.7 (New York style)
 - Redux Toolkit 2.11 with react-redux 9.2
 - Lucide React (icons)
+- Axios
 
 ## Code Style & Conventions
 
