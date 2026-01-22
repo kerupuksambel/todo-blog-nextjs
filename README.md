@@ -7,9 +7,8 @@ This is a Next.js project for containing blog and todo list.
     [v] Delete Tasks
     [v] Persist tasks items using localStorage (Optional / Bonus)
     [v] Filter by all / completed / pending (Optional / Bonus)
-[] Blog
+[v] Blog
     [v] Fetch post from `https://jsonplaceholder.typicode.com/posts`
-    [] Search post
     [v] Display post detail, and show comment in `https://jsonplaceholder.typicode.com/comments?postId=[ID]`
 
 ## Technical Specifications
